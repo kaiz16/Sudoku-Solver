@@ -35,6 +35,7 @@ module Helper
 end
 
 class Sudoku
+    attr_accessor :puzzle
     attr_reader :digits, :rows, :cols, :squares, :unit_list, :units, :peers
     def initialize
         @digits = "123456789"
@@ -44,9 +45,26 @@ class Sudoku
         @unit_list = Helper.unit_list(@rows, @cols)
         @units = Helper.units(@squares, @unit_list)
         @peers = Helper.peers(@squares, @units)
+        @puzzle = ""
     end
 
+    def to_s
+        output = ""
+        puzzle.each_char.with_index do |s, i|
+          s = "-" if s.match(/[0.-]/)
+          formatter = "#{s} "
+          formatter = "#{s} | " if (i + 1) % 3 == 0
+          formatter = "#{s}\n" if (i + 1) % 9 == 0
+          formatter += "#{"-" * 21}\n" if (i + 1) % 27 == 0 && i != 80
+          output += formatter 
+        end
+        return output + "\n"
+    end
 end
 
-game = Sudoku.new()
-game.test
+puzzle = "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--"
+sudoku = Sudoku.new()
+
+
+sudoku.puzzle = puzzle
+puts sudoku
