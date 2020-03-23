@@ -87,6 +87,18 @@ class Sudoku
     end
 
     def search(values)
+        # Try all possible values using backtracking
+        return false if !values # Contradiction - Return false
+        if squares.all?{|s| values[s].length == 1} # If every square has 1 value, that means it's solved!
+            return values.values.join("") 
+        end
+        # Chose the unfilled square s with the fewest possibilities
+        s = values.key(values.each_value.select{|s| s if s.length > 1}.min_by(&:length))
+        values[s].each_char do |d|
+            r = search(assign(values.dup, s, d)) # Try assigning each digit and eliminate then update the values.
+            return r if r # If an attempt succeeds, try next unfilled square 
+          end
+          return false # else, return false and try next digit
     end
 
     # Starts here
