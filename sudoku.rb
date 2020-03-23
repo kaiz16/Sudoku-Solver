@@ -48,6 +48,29 @@ class Sudoku
         @puzzle = ""
     end
 
+    def parse_grid
+    end
+
+    def assign(values, s, d)
+    end
+
+    def eliminate(values, s, d)
+    end
+
+    def search(values)
+    end
+
+    # Starts here
+    # Call parse_grid method first to eliminate values, then call search function
+    def solve
+        solved = search(parse_grid())
+        if solved 
+             # Add it to puzzle instace variable if solved
+            return self.puzzle = solved
+        end
+        return nil # Can't solve this puzzle
+    end
+
     def to_s
         output = ""
         puzzle.each_char.with_index do |s, i|
