@@ -49,6 +49,12 @@ class Sudoku
     end
 
     def parse_grid
+        # Store known squares with their values and unknown squares with digits
+        # For ex : if a given puzzle is  "1-58-2----9--764-52--4--819-19--73-6762-83-9-----61-5---76---3-43--2-5-16--3-89--"
+        # values = {"A1"=>"1", "A2"=>"123456789", "A3"=>"5", ...}
+        values = squares.zip(puzzle.split("").map{|c| c.sub(/[0.-]/, digits)}).to_h
+        # Assign the already solved squares to values hash.
+        values.each {|k, v| assign(values, k, v) if v.length == 1}
     end
 
     def assign(values, s, d)
