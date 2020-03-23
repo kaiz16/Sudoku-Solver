@@ -58,6 +58,9 @@ class Sudoku
     end
 
     def assign(values, s, d)
+        values[s] = d # Assign a digit (d) to a square (s)
+        # Eliminate digit d from square's peers, return false if condradiction is detected
+        peers[s].each.all?{|ps| eliminate(values, ps, d)} ? values : false
     end
 
     def eliminate(values, s, d)
