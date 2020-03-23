@@ -64,6 +64,26 @@ class Sudoku
     end
 
     def eliminate(values, s, d)
+        # Return values if already eliminated (Base case)
+        return values if !values[s].include?(d)
+        values[s] = values[s].sub(d, '') # Eliminate a digit
+        return false if values[s].length == 0 # Contradiction: removed last value, return false
+
+        if values[s].length == 1 # If a square has only 1 digit left, assign it there
+            return false unless assign(values, s, values[s])
+        end
+
+        # If a unit u is reduced to only one place for a value d, then put it there.
+        units[s].each do |unit|
+            dplaces = []
+            unit.each { |u| dplaces << u if values[u].include?(d)}
+            return false if dplaces.length == 0 # Contradiction: no place for this value
+            if dplaces.length == 1
+                # d can only be in one place in unit; assign it there
+                return false unless assign(values, dplaces[0], d)
+            end
+        end
+        return values
     end
 
     def search(values)
