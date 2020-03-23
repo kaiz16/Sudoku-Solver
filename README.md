@@ -2,10 +2,9 @@
 
 ## PC Specs
 
-* **CPU** - Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz 4 Cores 8 Threads
+* **CPU** - Intel(R) Core(TM) i7-7700HQ CPU @ 2.80GHz (3.80GHz Boost) 4 Cores 8 Threads 
 * **iGPU** - Intel® HD Graphics 630
 * **GPU** - GTX 1050 (Not in use while running benchmark)
-* **Boost Frequency** - 3.80GHz
 * **RAM** - 12 GB
 * **OS** - elementary OS 5.1 Hera
 
