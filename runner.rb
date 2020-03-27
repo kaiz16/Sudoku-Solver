@@ -8,7 +8,7 @@ sudoku = Sudoku.new()
 start = Time.now()
 files.each do |file|
     puts "Running " + file
-    File.readlines("Puzzles/easiest_sudoku_puzzles.txt").each_with_index do |puzzle, line|
+    File.readlines("Puzzles/#{file}").each_with_index do |puzzle, line|
         puts "Puzzle #{line + 1} - #{puzzle.chomp}"
         sudoku.puzzle = puzzle.chomp
         sudoku.solve
